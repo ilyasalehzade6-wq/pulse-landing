@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<meta name="theme-color" content="#1f1533">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="پالس مدیریت">
+<meta name="description" content="نرم‌افزار جامع مدیریت باشگاه — ۳۰ روز رایگان">
+<title>پالس مدیریت — نسخه موبایل</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+:root {
+    --gold: #f1c40f;
+    --gold-dark: #d4ac0d;
+    --dark: #1f1533;
+    --darker: #150d24;
+    --card: #2d1f4d;
+    --text: #ffffff;
+    --muted: #c8b8d8;
+    --green: #2ecc71;
+    --blue: #9b59b6;
+    --red: #e74c3c;
+    --orange: #f39c12;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: "Vazirmatn", Tahoma, sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    line-height: 1.7;
+    direction: rtl;
+    overflow-x: hidden;
+    padding-bottom: calc(80px + var(--safe-bottom));
+    font-size: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   📱 Mobile Header
+   ═══════════════════════════════════════════════════════ */
+.mobile-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    padding: 0 16px;
+    padding-top: var(--safe-top);
+    background: rgba(21, 13, 36, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(241, 196, 15, 0.15);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-header-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--gold);
+}
+
+.mobile-header-logo-icon { font-size: 26px; }
+
+.mobile-menu-btn {
+    width: 44px;
+    height: 44px;
+    background: rgba(241, 196, 15, 0.1);
+    border: 1px solid rgba(241, 196, 15, 0.3);
+    border-radius: 12px;
+    color: var(--gold);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════════
+   🍔 Mobile Menu (Full Screen)
+   ═══════════════════════════════════════════════════════ */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 9, 24, 0.98);
+    backdrop-filter: blur(30px);
+    z-index: 2000;
+    padding: calc(80px + var(--safe-top)) 24px 40px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+}
+
+.mobile-menu.open { transform: translateX(0); }
+
+.mobile-menu-close {
+    position: absolute;
+    top: calc(20px + var(--safe-top));
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    background: rgba(231, 76, 60, 0.15);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    border-radius: 12px;
+    color: var(--red);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-menu-list { list-style: none; }
+
+.mobile-menu-list li { margin-bottom: 8px; }
+
+.mobile-menu-list a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    background: rgba(45, 31, 77, 0.5);
+    border-radius: 16px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+
+.mobile-menu-list a:active {
+    background: rgba(241, 196, 15, 0.15);
+    transform: scale(0.98);
+}
+
+.mobile-menu-list a .menu-icon {
+    font-size: 24px;
+    width: 32px;
+    text-align: center;
+}
+
+/* ═══════════════════════════════════════════════════════
+   🌟 Hero (موبایل)
+   ═══════════════════════════════════════════════════════ */
+.mobile-hero {
+    padding: calc(90px + var(--safe-top)) 20px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 20%, rgba(241, 196, 15, 0.15) 0%, transparent 60%);
+}
+
+.mobile-hero-logo {
+    font-size: 80px;
+    line-height: 1;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 40px rgba(241, 196, 15, 0.6));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.mobile-hero-eyebrow {
+    display: inline-block;
+    background: rgba(241, 196, 15, 0.1);
+    border: 1px solid rgba(241, 196, 15, 0.4);
+    color: var(--gold);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.mobile-hero-title {
+    font-size: 34px;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 12px;
+    line-height: 1.2;
+    text-shadow: 0 0 30px rgba(241, 196, 15, 0.4);
+}
+
+.mobile-hero-title span {
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.mobile-hero-subtitle {
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.mobile-hero-desc {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    line-height: 1.8;
+}
+
+/* ─── Mobile Buttons ─── */
+.mobile-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.mobile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 18px 24px;
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 800;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-height: 56px;
+}
+
+.mobile-btn:active { transform: scale(0.97); }
+
+.mobile-btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--dark);
+    box-shadow: 0 10px 30px rgba(241, 196, 15, 0.4);
+}
+
+.mobile-btn-outline {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+}
+
+.mobile-btn-green {
+    background: linear-gradient(135deg, var(--green), #27ae60);
+    color: white;
+    box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+}
+
+.mobile-btn-blue {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+}
+
+/* ─── Hero Badges ─── */
+.mobile-hero-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.mobile-hero-badge {
+    background: rgba(241, 196, 15, 0.1);
+    border: 1px solid rgba(241, 196, 15, 0.3);
+    color: var(--gold);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════════
+   📊 Stats (Horizontal Scroll)
+   ═══════════════════════════════════════════════════════ */
+.mobile-stats {
+    display: flex;
+    gap: 10px;
+    padding: 0 20px 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.mobile-stats::-webkit-scrollbar { display: none; }
+
+.mobile-stat {
+    flex: 0 0 calc(50% - 5px);
+    min-width: 150px;
+    scroll-snap-align: start;
+    background: var(--card);
+    border: 1px solid rgba(241, 196, 15, 0.15);
+    border-radius: 20px;
+    padding: 20px 16px;
+    text-align: center;
+}
+
+.mobile-stat-value {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 5px;
+    direction: ltr;
+}
+
+.mobile-stat-label {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* ═══════════════════════════════════════════════════════
+   🎯 Mobile Section
+   ═══════════════════════════════════════════════════════ */
+.mobile-section {
+    padding: 50px 20px;
+}
+
+.mobile-section-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.mobile-section-eyebrow {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.mobile-section-title {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.mobile-section-title span { color: var(--gold); }
+
+.mobile-section-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ❌ Mobile Problem Cards
+   ═══════════════════════════════════════════════════════ */
+.mobile-problem-card {
+    background: rgba(231, 76, 60, 0.05);
+    border: 1px solid rgba(231, 76, 60, 0.2);
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.mobile-problem-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.mobile-problem-content { flex: 1; }
+
+.mobile-problem-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.mobile-problem-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ✨ Mobile Solution
+   ═══════════════════════════════════════════════════════ */
+.mobile-solution {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.15), rgba(241, 196, 15, 0.1));
+    border: 2px solid var(--green);
+    border-radius: 22px;
+    padding: 26px 22px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.mobile-solution-title {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--green);
+    margin-bottom: 12px;
+}
+
+.mobile-solution-desc {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.mobile-solution-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.mobile-solution-item {
+    background: rgba(46, 204, 113, 0.15);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* ═══════════════════════════════════════════════════════
+   🚀 Mobile Feature Cards
+   ═══════════════════════════════════════════════════════ */
+.mobile-feature-card {
+    background: var(--card);
+    border: 1px solid rgba(241, 196, 15, 0.1);
+    border-radius: 20px;
+    padding: 22px 20px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.mobile-feature-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+    line-height: 1;
+    filter: drop-shadow(0 0 10px rgba(241, 196, 15, 0.3));
+}
+
+.mobile-feature-content { flex: 1; }
+
+.mobile-feature-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.mobile-feature-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+.mobile-feature-list {
+    list-style: none;
+    padding: 0;
+}
+
+.mobile-feature-list li {
+    font-size: 12.5px;
+    color: var(--muted);
+    padding-right: 18px;
+    position: relative;
+    margin-bottom: 4px;
+}
+
+.mobile-feature-list li::before {
+    content: "✓";
+    position: absolute;
+    right: 0;
+    color: var(--green);
+    font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════════
+   📊 Mobile Comparison
+   ═══════════════════════════════════════════════════════ */
+.mobile-comparison {
+    background: var(--card);
+    border: 1px solid rgba(241, 196, 15, 0.15);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.mobile-comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 14px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 12px;
+    align-items: center;
+}
+
+.mobile-comparison-row:last-child { border-bottom: none; }
+
+.mobile-comparison-row.header {
+    background: rgba(241, 196, 15, 0.08);
+    font-weight: 800;
+    color: var(--gold);
+    font-size: 13px;
+}
+
+.mobile-comparison-row > div {
+    text-align: center;
+    padding: 0 4px;
+}
+
+.mobile-comparison-row > div:first-child {
+    text-align: right;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.mobile-comparison-check { color: var(--green); font-size: 18px; }
+.mobile-comparison-cross { color: var(--red); font-size: 18px; }
+
+/* ═══════════════════════════════════════════════════════
+   🎯 Mobile Steps
+   ═══════════════════════════════════════════════════════ */
+.mobile-step {
+    background: var(--card);
+    border: 1px solid rgba(241, 196, 15, 0.1);
+    border-radius: 18px;
+    padding: 22px 20px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+}
+
+.mobile-step-num {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.mobile-step-content { flex: 1; }
+
+.mobile-step-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 5px;
+}
+
+.mobile-step-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════
+   💎 Mobile Pricing Cards
+   ═══════════════════════════════════════════════════════ */
+.mobile-pricing-card {
+    background: var(--card);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+    padding: 24px 22px;
+    margin-bottom: 16px;
+    text-align: center;
+    position: relative;
+}
+
+.mobile-pricing-card.featured {
+    border-color: var(--gold);
+    background: linear-gradient(160deg, rgba(241, 196, 15, 0.1), var(--card));
+}
+
+.mobile-pricing-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    color: var(--dark);
+    padding: 5px 18px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.mobile-pricing-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 14px;
+}
+
+.mobile-pricing-price {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--gold);
+    direction: ltr;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.mobile-pricing-price span {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.mobile-pricing-discount {
+    display: inline-block;
+    background: rgba(46, 204, 113, 0.2);
+    color: var(--green);
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.mobile-pricing-features {
+    list-style: none;
+    text-align: right;
+    margin: 18px 0;
+    padding: 18px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-pricing-features li {
+    font-size: 13.5px;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mobile-pricing-features li::before {
+    content: "✅";
+    font-size: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ❓ Mobile FAQ
+   ═══════════════════════════════════════════════════════ */
+.mobile-faq-item {
+    background: var(--card);
+    border: 1px solid rgba(241, 196, 15, 0.1);
+    border-radius: 16px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.mobile-faq-item[open] {
+    border-color: var(--gold);
+    background: rgba(45, 31, 77, 0.8);
+}
+
+.mobile-faq-question {
+    padding: 18px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text);
+    list-style: none;
+    user-select: none;
+}
+
+.mobile-faq-question::-webkit-details-marker { display: none; }
+
+.mobile-faq-question::after {
+    content: "▼";
+    color: var(--gold);
+    font-size: 11px;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    margin-right: 12px;
+}
+
+.mobile-faq-item[open] .mobile-faq-question::after {
+    transform: rotate(180deg);
+}
+
+.mobile-faq-answer {
+    padding: 0 20px 18px;
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.8;
+}
+
+/* ═══════════════════════════════════════════════════════
+   📞 Mobile Contact
+   ═══════════════════════════════════════════════════════ */
+.mobile-contact-card {
+    background: linear-gradient(135deg, rgba(241, 196, 15, 0.08), rgba(241, 196, 15, 0.02));
+    border: 1px solid rgba(241, 196, 15, 0.3);
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+}
+
+.mobile-contact-card:active { transform: scale(0.98); }
+
+.mobile-contact-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.mobile-contact-icon.gold { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); }
+.mobile-contact-icon.green { background: linear-gradient(135deg, var(--green), #27ae60); }
+.mobile-contact-icon.blue { background: linear-gradient(135deg, #3498db, #2980b9); }
+
+.mobile-contact-info { flex: 1; }
+
+.mobile-contact-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 2px;
+}
+
+.mobile-contact-value {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text);
+    direction: ltr;
+}
+
+/* ═══════════════════════════════════════════════════════
+   🚀 Mobile Final CTA
+   ═══════════════════════════════════════════════════════ */
+.mobile-final-cta {
+    background: linear-gradient(135deg, rgba(241, 196, 15, 0.18), rgba(155, 89, 182, 0.12));
+    border: 2px solid var(--gold);
+    border-radius: 24px;
+    padding: 32px 24px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.mobile-cta-eyebrow {
+    display: inline-block;
+    background: rgba(231, 76, 60, 0.2);
+    color: var(--red);
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.mobile-cta-title {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 14px;
+    line-height: 1.3;
+}
+
+.mobile-cta-desc {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 24px;
+    line-height: 1.8;
+}
+
+/* ═══════════════════════════════════════════════════════
+   📱 Bottom Navigation (App-like)
+   ═══════════════════════════════════════════════════════ */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(70px + var(--safe-bottom));
+    padding-bottom: var(--safe-bottom);
+    background: rgba(21, 13, 36, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(241, 196, 15, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 999;
+}
+
+.bottom-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 600;
+    transition: all 0.2s;
+    position: relative;
+    min-height: 60px;
+    justify-content: center;
+}
+
+.bottom-nav-item.active {
+    color: var(--gold);
+}
+
+.bottom-nav-icon {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.bottom-nav-item.active .bottom-nav-icon {
+    filter: drop-shadow(0 0 8px rgba(241, 196, 15, 0.5));
+}
+
+.bottom-nav-item:active {
+    background: rgba(241, 196, 15, 0.1);
+    border-radius: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   📜 Scroll Reveal Animation
+   ═══════════════════════════════════════════════════════ */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s, transform 0.6s;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════
+   📱 Desktop Warning (فقط برای دسکتاپ)
+   ═══════════════════════════════════════════════════════ */
+.desktop-hint {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    left: 20px;
+    right: 20px;
+    background: rgba(155, 89, 182, 0.95);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    z-index: 998;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+@media (min-width: 768px) {
+    .desktop-hint { display: block; }
+    .mobile-section { padding: 70px 40px; }
+    .mobile-hero { padding: 120px 40px 60px; }
+    .mobile-hero-title { font-size: 48px; }
+    .mobile-feature-card,
+    .mobile-problem-card,
+    .mobile-step { max-width: 600px; margin-left: auto; margin-right: auto; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   🎨 Touch Feedback
+   ═══════════════════════════════════════════════════════ */
+@media (hover: none) {
+    .mobile-btn:active,
+    .mobile-feature-card:active,
+    .mobile-pricing-card:active,
+    .mobile-contact-card:active {
+        transform: scale(0.98);
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ Mobile Header ═══ -->
+<header class="mobile-header">
+    <div class="mobile-header-logo">
+        <span class="mobile-header-logo-icon">💎</span>
+        <span>پالس مدیریت</span>
+    </div>
+    <button class="mobile-menu-btn" onclick="openMenu()">☰</button>
+</header>
+
+<!-- ═══ Mobile Menu ═══ -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="closeMenu()">✕</button>
+    <ul class="mobile-menu-list">
+        <li><a href="#problems" onclick="closeMenu()">
+            <span class="menu-icon">❌</span>
+            چالش‌های باشگاه‌داران
+        </a></li>
+        <li><a href="#features" onclick="closeMenu()">
+            <span class="menu-icon">🚀</span>
+            ویژگی‌ها
+        </a></li>
+        <li><a href="#comparison" onclick="closeMenu()">
+            <span class="menu-icon">⚖️</span>
+            مقایسه
+        </a></li>
+        <li><a href="#how" onclick="closeMenu()">
+            <span class="menu-icon">🎯</span>
+            چطور کار می‌کند
+        </a></li>
+        <li><a href="#pricing" onclick="closeMenu()">
+            <span class="menu-icon">💎</span>
+            پلن‌ها
+        </a></li>
+        <li><a href="#faq" onclick="closeMenu()">
+            <span class="menu-icon">❓</span>
+            سوالات
+        </a></li>
+        <li><a href="#contact" onclick="closeMenu()">
+            <span class="menu-icon">📞</span>
+            تماس با ما
+        </a></li>
+    </ul>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="mobile-hero">
+    <div class="mobile-hero-logo">💎</div>
+
+    <div class="mobile-hero-eyebrow">⭐ نرم‌افزار مدیریت باشگاه</div>
+
+    <h1 class="mobile-hero-title">
+        باشگاهت رو <span>دیجیتال</span> کن!
+    </h1>
+
+    <p class="mobile-hero-subtitle">
+        نرم‌افزار جامع مدیریت<br>
+        باشگاه‌های ورزشی و مراکز آموزشی
+    </p>
+
+    <p class="mobile-hero-desc">
+        مدیریت اعضا، حضور و غیاب، امور مالی و پورتال اختصاصی اعضا — همه در یک نرم‌افزار
+    </p>
+
+    <div class="mobile-btns">
+        <a href="https://ilyasalehzade6-wq.github.io/pulse-app/signup.html" class="mobile-btn mobile-btn-primary" target="_blank">
+            🎁 ۳۰ روز رایگان شروع کن
+        </a>
+        <a href="#features" class="mobile-btn mobile-btn-outline">
+            ✨ مشاهده ویژگی‌ها
+        </a>
+    </div>
+
+    <div class="mobile-hero-badges">
+        <span class="mobile-hero-badge">🇮🇷 ساخت ایران</span>
+        <span class="mobile-hero-badge">☁️ ابری</span>
+        <span class="mobile-hero-badge">🔒 ضدکرک</span>
+        <span class="mobile-hero-badge">📱 موبایل</span>
+    </div>
+</section>
+
+<!-- ═══ Stats (Horizontal) ═══ -->
+<div class="mobile-stats">
+    <div class="mobile-stat">
+        <div class="mobile-stat-value">۵۰+</div>
+        <div class="mobile-stat-label">ویژگی حرفه‌ای</div>
+    </div>
+    <div class="mobile-stat">
+        <div class="mobile-stat-value">۳۰</div>
+        <div class="mobile-stat-label">روز رایگان</div>
+    </div>
+    <div class="mobile-stat">
+        <div class="mobile-stat-value">۲۴/۷</div>
+        <div class="mobile-stat-label">پشتیبانی</div>
+    </div>
+    <div class="mobile-stat">
+        <div class="mobile-stat-value">۱۰۰٪</div>
+        <div class="mobile-stat-label">فارسی و بومی</div>
+    </div>
+</div>
+
+<!-- ═══ Problems ═══ -->
+<section class="mobile-section" id="problems">
+    <div class="mobile-section-header">
+        <div class="mobile-section-eyebrow">😰 مشکلات رایج</div>
+        <h2 class="mobile-section-title">آیا شما هم این <span>چالش‌ها</span> رو دارید؟</h2>
+        <p class="mobile-section-subtitle">اگه حتی یکی از اینا واست آشناست، ادامه بده</p>
+    </div>
+
+    <div class="mobile-problem-card reveal">
+        <div class="mobile-problem-icon">📝</div>
+        <div class="mobile-problem-content">
+            <div class="mobile-problem-title">دفتر و کاغذ؟</div>
+            <div class="mobile-problem-desc">ثبت‌نام‌ها روی کاغذ، اطلاعات توی چند دفتر، گم شدن و دوباره‌کاری</div>
+        </div>
+    </div>
+
+    <div class="mobile-problem-card reveal">
+        <div class="mobile-problem-icon">💰</div>
+        <div class="mobile-problem-content">
+            <div class="mobile-problem-title">حساب‌های مالی نامنظم</div>
+            <div class="mobile-problem-desc">نمی‌دونی ماهانه چقدر درآمد داری، کی بدهکاره، چقدر سود کردی</div>
+        </div>
+    </div>
+
+    <div class="mobile-problem-card reveal">
+        <div class="mobile-problem-icon">⏰</div>
+        <div class="mobile-problem-content">
+            <div class="mobile-problem-title">حضور و غیاب دستی</div>
+            <div class="mobile-problem-desc">هر جلسه باید لیست بزنی، حضور بزنی، آخر ماه جمع بزنی</div>
+        </div>
+    </div>
+
+    <div class="mobile-problem-card reveal">
+        <div class="mobile-problem-icon">😤</div>
+        <div class="mobile-problem-content">
+            <div class="mobile-problem-title">اعضای ناراضی</div>
+            <div class="mobile-problem-desc">اعضا نمی‌دونن چقدر بدهی دارن، چند جلسه حاضر شدن، کارتشون کیه</div>
+        </div>
+    </div>
+
+    <div class="mobile-problem-card reveal">
+        <div class="mobile-problem-icon">💾</div>
+        <div class="mobile-problem-content">
+            <div class="mobile-problem-title">ترس از دست دادن داده‌ها</div>
+            <div class="mobile-problem-desc">اگه کامپیوتر خراب بشه یا ویندوز عوض بشه، همه‌ی اطلاعات می‌ره</div>
+        </div>
+    </div>
+
+    <div class="mobile-problem-card reveal">
+        <div class="mobile-problem-icon">📊</div>
+        <div class="mobile-problem-content">
+            <div class="mobile-problem-title">گزارش‌گیری سخت</div>
+            <div class="mobile-problem-desc">می‌خوای بدونی ماه قبل چقدر پیشرفت داشتی، ولی راهی نداری</div>
+        </div>
+    </div>
+
+    <div class="mobile-solution reveal">
+        <div class="mobile-solution-title">✨ راه‌حل: پالس مدیریت</div>
+        <p class="mobile-solution-desc">
+            نرم‌افزاری که همه‌ی این مشکلات رو یک‌جا حل می‌کنه — فارسی، ابری، امن
+        </p>
+        <div class="mobile-solution-grid">
+            <div class="mobile-solution-item">✅ دیجیتال</div>
+            <div class="mobile-solution-item">✅ خودکار</div>
+            <div class="mobile-solution-item">✅ منظم</div>
+            <div class="mobile-solution-item">✅ امن</div>
+            <div class="mobile-solution-item">✅ ابری</div>
+            <div class="mobile-solution-item">✅ فارسی</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ Features ═══ -->
+<section class="mobile-section" id="features" style="background: var(--darker);">
+    <div class="mobile-section-header">
+        <div class="mobile-section-eyebrow">🚀 قدرت واقعی</div>
+        <h2 class="mobile-section-title">هرچی برای <span>مدیریت کامل</span> لازم داری</h2>
+        <p class="mobile-section-subtitle">بیش از ۵۰ ویژگی حرفه‌ای، در یک نرم‌افزار یکپارچه</p>
+    </div>
+
+    <div class="mobile-feature-card reveal">
+        <div class="mobile-feature-icon">👥</div>
+        <div class="mobile-feature-content">
+            <div class="mobile-feature-title">مدیریت کامل اعضا</div>
+            <div class="mobile-feature-desc">اطلاعات کامل هر عضو در یک کارت، قابل جستجو</div>
+            <ul class="mobile-feature-list">
+                <li>عکس و مدارک</li>
+                <li>تاریخ تولد شمسی/میلادی/قمری</li>
+                <li>سابقه‌ی کلاس‌ها و حضور</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mobile-feature-card reveal">
+        <div class="mobile-feature-icon">✅</div>
+        <div class="mobile-feature-content">
+            <div class="mobile-feature-title">حضور و غیاب هوشمند</div>
+            <div class="mobile-feature-desc">ثبت سریع کل کلاس در ۳ ثانیه، گزارش ماهانه خودکار</div>
+            <ul class="mobile-feature-list">
+                <li>ثبت یک‌کلیکی</li>
+                <li>گزارش روزانه و ماهانه</li>
+                <li>محاسبه‌ی خودکار جریمه</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mobile-feature-card reveal">
+        <div class="mobile-feature-icon">💰</div>
+        <div class="mobile-feature-content">
+            <div class="mobile-feature-title">سیستم مالی پیشرفته</div>
+            <div class="mobile-feature-desc">کنترل کامل درآمد، هزینه، اقساط و سود</div>
+            <ul class="mobile-feature-list">
+                <li>شهریه، اقساط، بدهی</li>
+                <li>کیف پول اعضا</li>
+                <li>گزارش سود و زیان</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mobile-feature-card reveal">
+        <div class="mobile-feature-icon">📱</div>
+        <div class="mobile-feature-content">
+            <div class="mobile-feature-title">پورتال اختصاصی اعضا</div>
+            <div class="mobile-feature-desc">هر ورزشکار از موبایلش اقساط و حضورش رو می‌بینه</div>
+            <ul class="mobile-feature-list">
+                <li>ورود با شماره موبایل</li>
+                <li>مشاهده‌ی اقساط معلق</li>
+                <li>کارت عضویت دیجیتال</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mobile-feature-card reveal">
+        <div class="mobile-feature-icon">📚</div>
+        <div class="mobile-feature-content">
+            <div class="mobile-feature-title">مدیریت کلاس‌ها</div>
+            <div class="mobile-feature-desc">تعریف کلاس، ظرفیت، شهریه، مربی</div>
+            <ul class="mobile-feature-list">
+                <li>ظرفیت‌سنجی هوشمند</li>
+                <li>برنامه‌ی هفتگی</li>
+                <li>گزارش کلاس‌ها</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mobile-feature-card reveal">
+        <div class="mobile-feature-icon">☁️</div>
+        <div class="mobile-feature-content">
+            <div class="mobile-feature-title">همگام‌سازی ابری</div>
+            <div class="mobile-feature-desc">داده‌ها همیشه امن و در دسترس از هر دستگاه</div>
+            <ul class="mobile-feature-list">
+                <li>Sync خودکار هر ۱۵ دقیقه</li>
+                <li>بکاپ خودکار روزانه</li>
+                <li>بازیابی سریع داده‌ها</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mobile-feature-card reveal">
+        <div class="mobile-feature-icon">📊</div>
+        <div class="mobile-feature-content">
+            <div class="mobile-feature-title">گزارش‌های حرفه‌ای</div>
+            <div class="mobile-feature-desc">نمودار، آمار، تحلیل عملکرد باشگاه</div>
+            <ul class="mobile-feature-list">
+                <li>نمودار درآمد ماهانه</li>
+                <li>آمار حضور</li>
+                <li>خروجی PDF</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mobile-feature-card reveal">
+        <div class="mobile-feature-icon">🔒</div>
+        <div class="mobile-feature-content">
+            <div class="mobile-feature-title">امنیت نظامی</div>
+            <div class="mobile-feature-desc">رمزنگاری bcrypt + امضای دیجیتال Ed25519</div>
+            <ul class="mobile-feature-list">
+                <li>لایسنس ضدکرک</li>
+                <li>قفل حساب با HWID</li>
+                <li>لاگ تمام فعالیت‌ها</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ Comparison ═══ -->
+<section class="mobile-section" id="comparison">
+    <div class="mobile-section-header">
+        <div class="mobile-section-eyebrow">⚖️ مقایسه</div>
+        <h2 class="mobile-section-title">پالس مدیریت در برابر <span>روش سنتی</span></h2>
+        <p class="mobile-section-subtitle">چقدر وقت، پول و انرژی صرفه‌جویی می‌کنی</p>
+    </div>
+
+    <div class="mobile-comparison reveal">
+        <div class="mobile-comparison-row header">
+            <div>ویژگی</div>
+            <div>پالس مدیریت</div>
+            <div>سنتی</div>
+        </div>
+        <div class="mobile-comparison-row">
+            <div>مدیریت اعضا</div>
+            <div><span class="mobile-comparison-check">✅</span></div>
+            <div><span class="mobile-comparison-cross">❌</span></div>
+        </div>
+        <div class="mobile-comparison-row">
+            <div>حضور و غیاب</div>
+            <div><span class="mobile-comparison-check">✅</span></div>
+            <div><span class="mobile-comparison-cross">❌</span></div>
+        </div>
+        <div class="mobile-comparison-row">
+            <div>محاسبه‌ی مالی</div>
+            <div><span class="mobile-comparison-check">✅</span></div>
+            <div><span class="mobile-comparison-cross">❌</span></div>
+        </div>
+        <div class="mobile-comparison-row">
+            <div>پورتال اعضا</div>
+            <div><span class="mobile-comparison-check">✅</span></div>
+            <div><span class="mobile-comparison-cross">❌</span></div>
+        </div>
+        <div class="mobile-comparison-row">
+            <div>بکاپ خودکار</div>
+            <div><span class="mobile-comparison-check">✅</span></div>
+            <div><span class="mobile-comparison-cross">❌</span></div>
+        </div>
+        <div class="mobile-comparison-row">
+            <div>گزارش‌گیری</div>
+            <div><span class="mobile-comparison-check">✅</span></div>
+            <div><span class="mobile-comparison-cross">❌</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ How It Works ═══ -->
+<section class="mobile-section" id="how" style="background: var(--darker);">
+    <div class="mobile-section-header">
+        <div class="mobile-section-eyebrow">🎯 مسیر شروع</div>
+        <h2 class="mobile-section-title">در <span>۴ گام ساده</span> باشگاهت رو دیجیتال کن</h2>
+        <p class="mobile-section-subtitle">از ثبت‌نام تا اولین استفاده، کمتر از ۵ دقیقه</p>
+    </div>
+
+    <div class="mobile-step reveal">
+        <div class="mobile-step-num">۱</div>
+        <div class="mobile-step-content">
+            <div class="mobile-step-title">ثبت‌نام رایگان</div>
+            <div class="mobile-step-desc">با شماره موبایل ثبت‌نام کن. ۳۰ روز کامل تست کن</div>
+        </div>
+    </div>
+
+    <div class="mobile-step reveal">
+        <div class="mobile-step-num">۲</div>
+        <div class="mobile-step-content">
+            <div class="mobile-step-title">دانلود نرم‌افزار</div>
+            <div class="mobile-step-desc">نرم‌افزار دسکتاپ رو دانلود و نصب کن</div>
+        </div>
+    </div>
+
+    <div class="mobile-step reveal">
+        <div class="mobile-step-num">۳</div>
+        <div class="mobile-step-content">
+            <div class="mobile-step-title">اطلاعات رو وارد کن</div>
+            <div class="mobile-step-desc">اعضا، کلاس‌ها و شهریه‌ها رو وارد کن</div>
+        </div>
+    </div>
+
+    <div class="mobile-step reveal">
+        <div class="mobile-step-num">۴</div>
+        <div class="mobile-step-content">
+            <div class="mobile-step-title">لذت ببر!</div>
+            <div class="mobile-step-desc">باشگاهت الان دیجیتاله. از هر جا مدیریت کن</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ Pricing ═══ -->
+<section class="mobile-section" id="pricing">
+    <div class="mobile-section-header">
+        <div class="mobile-section-eyebrow">💎 پلن‌ها</div>
+        <h2 class="mobile-section-title">پلن مناسب خودت رو <span>انتخاب کن</span></h2>
+        <p class="mobile-section-subtitle">همه‌ی پلن‌ها شامل همه‌ی امکانات</p>
+    </div>
+
+    <div class="mobile-pricing-card reveal">
+        <div class="mobile-pricing-name">📅 ۱ ماهه</div>
+        <div class="mobile-pricing-price">1,000,000 <span>تومان</span></div>
+        <div class="mobile-pricing-discount" style="opacity: 0;">—</div>
+        <ul class="mobile-pricing-features">
+            <li>همه‌ی ۵۰+ ویژگی</li>
+            <li>پورتال اعضا</li>
+            <li>پشتیبانی رایگان</li>
+        </ul>
+        <a href="#contact" class="mobile-btn mobile-btn-primary">
+            🚀 شروع کن
+        </a>
+    </div>
+
+    <div class="mobile-pricing-card reveal">
+        <div class="mobile-pricing-name">📅 ۳ ماهه</div>
+        <div class="mobile-pricing-price">2,700,000 <span>تومان</span></div>
+        <div class="mobile-pricing-discount">۱۰٪ تخفیف</div>
+        <ul class="mobile-pricing-features">
+            <li>همه‌ی ۵۰+ ویژگی</li>
+            <li>پورتال اعضا</li>
+            <li>پشتیبانی رایگان</li>
+        </ul>
+        <a href="#contact" class="mobile-btn mobile-btn-primary">
+            🚀 شروع کن
+        </a>
+    </div>
+
+    <div class="mobile-pricing-card featured reveal">
+        <div class="mobile-pricing-badge">⭐ پیشنهاد ویژه</div>
+        <div class="mobile-pricing-name">📅 ۶ ماهه</div>
+        <div class="mobile-pricing-price">4,800,000 <span>تومان</span></div>
+        <div class="mobile-pricing-discount">۲۰٪ تخفیف</div>
+        <ul class="mobile-pricing-features">
+            <li>همه‌ی ۵۰+ ویژگی</li>
+            <li>پورتال اعضا</li>
+            <li>پشتیبانی VIP</li>
+            <li>آموزش اختصاصی</li>
+        </ul>
+        <a href="#contact" class="mobile-btn mobile-btn-primary">
+            🚀 شروع کن
+        </a>
+    </div>
+
+    <div class="mobile-pricing-card reveal">
+        <div class="mobile-pricing-name">👑 ۱ ساله</div>
+        <div class="mobile-pricing-price">8,400,000 <span>تومان</span></div>
+        <div class="mobile-pricing-discount">۳۰٪ تخفیف</div>
+        <ul class="mobile-pricing-features">
+            <li>همه‌ی ۵۰+ ویژگی</li>
+            <li>پورتال اعضا</li>
+            <li>پشتیبانی VIP اختصاصی</li>
+            <li>آموزش تیم</li>
+        </ul>
+        <a href="#contact" class="mobile-btn mobile-btn-primary">
+            🚀 شروع کن
+        </a>
+    </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="mobile-section" id="faq" style="background: var(--darker);">
+    <div class="mobile-section-header">
+        <div class="mobile-section-eyebrow">❓ سوالات</div>
+        <h2 class="mobile-section-title">سوالات <span>متداول</span></h2>
+    </div>
+
+    <details class="mobile-faq-item" open>
+        <summary class="mobile-faq-question">آیا ۳۰ روز رایگان واقعیه؟ کارت بانکی نمی‌خواد؟</summary>
+        <div class="mobile-faq-answer">
+            بله! فقط با شماره موبایل ثبت‌نام می‌کنی و ۳۰ روز از تمام امکانات استفاده می‌کنی. بدون هیچ پرداختی.
+        </div>
+    </details>
+
+    <details class="mobile-faq-item">
+        <summary class="mobile-faq-question">برای استفاده به اینترنت نیاز دارم؟</summary>
+        <div class="mobile-faq-answer">
+            نسخه‌ی دسکتاپ کاملاً آفلاین کار می‌کند. برای همگام‌سازی ابری و پورتال اعضا، اینترنت لازم است. اما اگر اینترنت قطع باشد، داده‌ها محلی ذخیره می‌شوند.
+        </div>
+    </details>
+
+    <details class="mobile-faq-item">
+        <summary class="mobile-faq-question">پورتال اعضا باید نرم‌افزار نصب کنند؟</summary>
+        <div class="mobile-faq-answer">
+            خیر! هر ورزشکار با ورود به یک لینک، شماره موبایل و نامش را وارد می‌کند و بلافاصله اقساط، حضور و کارت عضویتش را می‌بیند. بدون نصب هیچ برنامه‌ای.
+        </div>
+    </details>
+
+    <details class="mobile-faq-item">
+        <summary class="mobile-faq-question">داده‌هایم امن هستند؟</summary>
+        <div class="mobile-faq-answer">
+            تمام داده‌ها با رمزنگاری bcrypt و امضای دیجیتال Ed25519 محافظت می‌شوند. همچنین بکاپ خودکار روزانه از داده‌ها نگه‌داری می‌کند.
+        </div>
+    </details>
+
+    <details class="mobile-faq-item">
+        <summary class="mobile-faq-question">می‌توانم پلن را بعداً ارتقا دهم؟</summary>
+        <div class="mobile-faq-answer">
+            بله، هر زمان. مبلغ باقی‌مانده‌ی پلن فعلی محاسبه شده و از هزینه‌ی پلن جدید کسر می‌شود.
+        </div>
+    </details>
+</section>
+
+<!-- ═══ Final CTA ═══ -->
+<section class="mobile-section">
+    <div class="mobile-final-cta reveal">
+        <div class="mobile-cta-eyebrow">⏰ شروع رایگان</div>
+
+        <h2 class="mobile-cta-title">همین امروز شروع کن!</h2>
+
+        <p class="mobile-cta-desc">
+            ۳۰ روز اول کاملاً رایگان. بدون کارت بانکی. فقط با شماره موبایل.
+        </p>
+
+        <div class="mobile-btns">
+            <a href="https://ilyasalehzade6-wq.github.io/pulse-app/signup.html" class="mobile-btn mobile-btn-primary" target="_blank">
+                🚀 ثبت‌نام رایگان
+            </a>
+            <a href="https://web.rubika.ir/#c=u0I694z06ef3f234f2ae3275cf100ed3" class="mobile-btn mobile-btn-outline" target="_blank">
+                💬 مشاوره در روبیکا
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ Contact ═══ -->
+<section class="mobile-section" id="contact">
+    <div class="mobile-section-header">
+        <div class="mobile-section-eyebrow">📞 تماس با ما</div>
+        <h2 class="mobile-section-title">راه‌های <span>ارتباطی</span></h2>
+    </div>
+
+    <a href="tel:09137704340" class="mobile-contact-card reveal">
+        <div class="mobile-contact-icon gold">👤</div>
+        <div class="mobile-contact-info">
+            <div class="mobile-contact-label">سازنده و مدیر محصول</div>
+            <div class="mobile-contact-value">0913-770-4340</div>
+        </div>
+    </a>
+
+    <a href="tel:09133984340" class="mobile-contact-card reveal">
+        <div class="mobile-contact-icon green">💬</div>
+        <div class="mobile-contact-info">
+            <div class="mobile-contact-label">پشتیبانی فنی</div>
+            <div class="mobile-contact-value">0913-398-4340</div>
+        </div>
+    </a>
+
+    <a href="https://web.rubika.ir/#c=u0I694z06ef3f234f2ae3275cf100ed3" class="mobile-contact-card reveal" target="_blank">
+        <div class="mobile-contact-icon blue">✉️</div>
+        <div class="mobile-contact-info">
+            <div class="mobile-contact-label">چت در روبیکا</div>
+            <div class="mobile-contact-value">@Pulsmanagersaport</div>
+        </div>
+    </a>
+</section>
+
+<!-- ═══ Bottom Navigation ═══ -->
+<nav class="bottom-nav">
+    <a href="#top" class="bottom-nav-item active" onclick="setActive(this)">
+        <span class="bottom-nav-icon">🏠</span>
+        <span>خانه</span>
+    </a>
+    <a href="#features" class="bottom-nav-item" onclick="setActive(this)">
+        <span class="bottom-nav-icon">🚀</span>
+        <span>ویژگی‌ها</span>
+    </a>
+    <a href="#pricing" class="bottom-nav-item" onclick="setActive(this)">
+        <span class="bottom-nav-icon">💎</span>
+        <span>پلن‌ها</span>
+    </a>
+    <a href="https://ilyasalehzade6-wq.github.io/pulse-app/signup.html" class="bottom-nav-item" target="_blank">
+        <span class="bottom-nav-icon">🎁</span>
+        <span>شروع</span>
+    </a>
+    <a href="#contact" class="bottom-nav-item" onclick="setActive(this)">
+        <span class="bottom-nav-icon">📞</span>
+        <span>تماس</span>
+    </a>
+</nav>
+
+<!-- ═══ Desktop Hint ═══ -->
+<div class="desktop-hint">
+    📱 این نسخه برای موبایل بهینه شده. برای دسکتاپ از <a href="index.html" style="color: #f1c40f; font-weight: 800;">index.html</a> استفاده کن.
+</div>
+
+<script>
+// ═══ Mobile Menu ═══
+function openMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+// ═══ Smooth Scroll ═══
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            window.scrollTo({
+                top: target.offsetTop - 70,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// ═══ Scroll Reveal ═══
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
+});
+
+// ═══ Bottom Nav Active State ═══
+function setActive(el) {
+    document.querySelectorAll('.bottom-nav-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    el.classList.add('active');
+}
+
+// ═══ Hide on Scroll Down, Show on Up ═══
+let lastScroll = 0;
+const bottomNav = document.querySelector('.bottom-nav');
+const header = document.querySelector('.mobile-header');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > lastScroll && currentScroll > 100) {
+        // اسکرول به پایین
+        bottomNav.style.transform = 'translateY(100%)';
+        header.style.transform = 'translateY(-100%)';
+    } else {
+        // اسکرول به بالا
+        bottomNav.style.transform = 'translateY(0)';
+        header.style.transform = 'translateY(0)';
+    }
+
+    lastScroll = currentScroll;
+}, { passive: true });
+
+// ═══ PWA Install Prompt ═══
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+});
+
+// ═══ Haptic Feedback (برای موبایل) ═══
+function haptic() {
+    if (navigator.vibrate) {
+        navigator.vibrate(10);
+    }
+}
+
+document.querySelectorAll('.mobile-btn, .bottom-nav-item, .mobile-contact-card').forEach(el => {
+    el.addEventListener('touchstart', haptic, { passive: true });
+});
+</script>
+
+</body>
+</html>

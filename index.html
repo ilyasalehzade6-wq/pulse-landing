@@ -129,37 +129,13 @@ body {
     cursor: pointer;
 }
 
-/* ═══ Announcement Bar ═══ */
-.announcement {
-    background: linear-gradient(90deg, var(--red), var(--orange), var(--red));
-    background-size: 200% 100%;
-    color: white;
-    text-align: center;
-    padding: 8px 20px;
-    font-size: 13px;
-    font-weight: 700;
-    animation: gradientMove 3s linear infinite;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1001;
-}
-
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
-}
-
-.navbar { top: 34px; }
-
 /* ═══ Hero ═══ */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 160px 20px 80px;
+    padding: 130px 20px 80px;
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -1004,7 +980,7 @@ body {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1.5fr;
     gap: 40px;
     margin-bottom: 40px;
 }
@@ -1199,10 +1175,7 @@ body {
 </head>
 <body>
 
-<!-- ═══ Announcement Bar ═══ -->
-<div class="announcement">
-    🎉 جشنواره‌ی پاییز — تا ۳۰٪ تخفیف روی همه‌ی پلن‌ها! 🎉
-</div>
+
 
 <!-- ═══ Navbar ═══ -->
 <nav class="navbar" id="navbar">
@@ -1829,16 +1802,6 @@ body {
                     <li><a href="https://ilyasalehzade6-wq.github.io/pulse-app/login.html" target="_blank">ورود اعضا</a></li>
                     <li><a href="https://ilyasalehzade6-wq.github.io/python-manager/" target="_blank">پورتال اعضا</a></li>
                 </ul>
-            </div>
-
-            <div>
-                <h4 class="footer-title">📱 اسکن کنید</h4>
-                <div style="width: 120px; height: 120px; border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(241, 196, 15, 0.3); margin-bottom: 10px;">
-                    <img src="../assets/qr-landing-framed.png" alt="QR" style="width: 100%; height: 100%; display: block;">
-                </div>
-                <div style="font-size: 11px; color: var(--muted); line-height: 1.5;">
-                    سایت ما را با موبایل<br>bبینید
-                </div>
             </div>
 
             <div>
