@@ -16,14 +16,14 @@
 :root {
     --gold: #f1c40f;
     --gold-dark: #d4ac0d;
-    --dark: #0a0a1a;
-    --darker: #05050f;
-    --card: #15152a;
-    --card-hover: #1a1a35;
+    --dark: #1f1533;
+    --darker: #150d24;
+    --card: #2d1f4d;
+    --card-hover: #3a2866;
     --text: #ffffff;
-    --muted: #95a5a6;
+    --muted: #c8b8d8;
     --green: #2ecc71;
-    --blue: #3498db;
+    --blue: #9b59b6;
     --red: #e74c3c;
     --orange: #f39c12;
 }
@@ -45,7 +45,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(10, 10, 26, 0.95);
+    background: rgba(31, 21, 51, 0.95);
     backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(241, 196, 15, 0.15);
     z-index: 1000;
@@ -54,7 +54,7 @@ body {
 }
 
 .navbar.scrolled {
-    background: rgba(5, 5, 15, 0.98);
+    background: rgba(21, 13, 36, 0.98);
     padding: 10px 0;
     box-shadow: 0 5px 30px rgba(0,0,0,0.5);
 }
@@ -170,8 +170,8 @@ body {
     position: absolute;
     inset: 0;
     background: 
-        radial-gradient(circle at 20% 30%, rgba(241, 196, 15, 0.18) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(52, 152, 219, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 20% 30%, rgba(241, 196, 15, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(155, 89, 182, 0.12) 0%, transparent 40%),
         radial-gradient(circle at 50% 50%, rgba(46, 204, 113, 0.06) 0%, transparent 50%);
     pointer-events: none;
     animation: pulse 8s ease-in-out infinite;
@@ -871,86 +871,6 @@ body {
 
 .pricing-guarantee strong { color: var(--green); }
 
-/* ═══ Testimonials ═══ */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 22px;
-}
-
-.testimonial-card {
-    background: var(--card);
-    border: 1px solid rgba(241, 196, 15, 0.1);
-    border-radius: 20px;
-    padding: 30px 25px;
-    position: relative;
-}
-
-.testimonial-card::before {
-    content: """;
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 80px;
-    color: rgba(241, 196, 15, 0.15);
-    font-family: serif;
-    line-height: 1;
-}
-
-.testimonial-stars {
-    color: var(--gold);
-    font-size: 18px;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-}
-
-.testimonial-text {
-    font-size: 14px;
-    color: var(--text);
-    line-height: 1.9;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
-}
-
-.testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.testimonial-avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--dark);
-    flex-shrink: 0;
-}
-
-.testimonial-info {
-    flex: 1;
-}
-
-.testimonial-name {
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 2px;
-}
-
-.testimonial-role {
-    font-size: 12px;
-    color: var(--muted);
-}
-
 /* ═══ FAQ ═══ */
 .faq-list {
     max-width: 800px;
@@ -1006,7 +926,7 @@ body {
 
 /* ═══ CTA Final ═══ */
 .cta-final {
-    background: linear-gradient(135deg, rgba(241, 196, 15, 0.18), rgba(52, 152, 219, 0.12));
+    background: linear-gradient(135deg, rgba(241, 196, 15, 0.18), rgba(155, 89, 182, 0.12));
     border: 2px solid var(--gold);
     border-radius: 28px;
     padding: 70px 45px;
@@ -1181,7 +1101,7 @@ body {
 }
 
 .footer-contact-icon.blue {
-    background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(52, 152, 219, 0.08));
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(155, 89, 182, 0.08));
     color: var(--blue);
 }
 
@@ -1297,7 +1217,6 @@ body {
             <li><a href="#features">ویژگی‌ها</a></li>
             <li><a href="#how">چطور کار می‌کند</a></li>
             <li><a href="#pricing">پلن‌ها</a></li>
-            <li><a href="#testimonials">نظرات</a></li>
             <li><a href="#faq">سوالات</a></li>
         </ul>
 
@@ -1311,20 +1230,20 @@ body {
     <div class="hero-content">
         <div class="hero-logo">💎</div>
 
-        <div class="hero-eyebrow">⭐ انتخاب هوشمندانه‌ی باشگاه‌داران موفق</div>
+        <div class="hero-eyebrow">⭐ نرم‌افزار مدیریت باشگاه — کاملاً فارسی</div>
 
         <h1 class="hero-title">
-            باشگاهت رو <span>هوشمند</span> کن!
+            باشگاهت رو <span>دیجیتال</span> کن!
         </h1>
 
         <p class="hero-subtitle">
-            تنها نرم‌افزار کاملاً فارسی که کل باشگاهت رو<br>
-            از کاغذ به دیجیتال می‌بره — در کمتر از ۵ دقیقه
+            نرم‌افزار جامع مدیریت باشگاه<br>
+            کاملاً فارسی، ابری و آفلاین
         </p>
 
         <p class="hero-desc">
             مدیریت اعضا، حضور و غیاب، امور مالی، کلاس‌ها و یک <strong>پورتال اختصاصی اعضا</strong> که هر ورزشکار با موبایلش اقساط و حضورش رو می‌بینه.
-            همه چیز در <strong>یک نرم‌افزار</strong>، بدون نیاز به چند ابزار جداگانه.
+            همه چیز در <strong>یک نرم‌افزار یکپارچه</strong>.
         </p>
 
         <div class="hero-badges">
@@ -1659,14 +1578,14 @@ body {
     <div class="section-inner">
         <div class="section-header">
             <div class="section-eyebrow">💚 مزایای واقعی</div>
-            <h2 class="section-title">چرا <span>هزاران باشگاه‌دار</span> این رو انتخاب می‌کنن</h2>
+            <h2 class="section-title">چرا <span>پالس مدیریت</span> رو انتخاب کنی</h2>
         </div>
 
         <div class="benefits-grid">
             <div class="benefit-card">
                 <div class="benefit-icon">⏰</div>
                 <div>
-                    <div class="benefit-title">صرفه‌جویی ۲۰+ ساعت در ماه</div>
+                    <div class="benefit-title">صرفه‌جویی زمان زیاد</div>
                     <div class="benefit-desc">کارهایی که الان ساعتی طول می‌کشه، در چند ثانیه انجام میشه</div>
                 </div>
             </div>
@@ -1674,7 +1593,7 @@ body {
             <div class="benefit-card">
                 <div class="benefit-icon">💰</div>
                 <div>
-                    <div class="benefit-title">کاهش هزینه‌ی منشی</div>
+                    <div class="benefit-title">سازماندهی مالی</div>
                     <div class="benefit-desc">نیازی به استخدام منشی برای امور اداری نداری. در هزینه‌ات صرفه‌جویی میشه</div>
                 </div>
             </div>
@@ -1682,7 +1601,7 @@ body {
             <div class="benefit-card">
                 <div class="benefit-icon">📈</div>
                 <div>
-                    <div class="benefit-title">افزایش درآمد تا ۳۰٪</div>
+                    <div class="benefit-title">کنترل بهتر درآمد</div>
                     <div class="benefit-desc">با پیگیری دقیق بدهی‌ها و اقساط، درآمدت واقعی میشه و کمتر کسی فرار می‌کنه</div>
                 </div>
             </div>
@@ -1781,62 +1700,7 @@ body {
         </div>
 
         <div class="pricing-guarantee">
-            🎁 <strong>تضمین بازگشت پول:</strong> اگه تا ۷ روز اول راضی نبودی، ۱۰۰٪ مبلغ برمی‌گرده — بدون هیچ سوالی
-        </div>
-    </div>
-</section>
-
-<!-- ═══ Testimonials ═══ -->
-<section class="section" id="testimonials">
-    <div class="section-inner">
-        <div class="section-header">
-            <div class="section-eyebrow">💬 نظرات مشتریان</div>
-            <h2 class="section-title">باشگاه‌داران <span>چه می‌گویند؟</span></h2>
-            <p class="section-subtitle">تجربه‌ی واقعی کسانی که از پالس مدیریت استفاده می‌کنند</p>
-        </div>
-
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">
-                    «قبلاً ۳ تا دفتر داشتم برای مدیریت باشگاه. الان فقط یه نرم‌افزار. با پورتال اعضا، دیگه کسی زنگ نمی‌زنه که اقساطش چقدره! واقعاً عالیه»
-                </p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">ر</div>
-                    <div class="testimonial-info">
-                        <div class="testimonial-name">رضا احمدی</div>
-                        <div class="testimonial-role">باشگاه رزمی تهران</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">
-                    «حضور و غیاب دستی خیلی وقتم رو می‌گرفت. الان کل کلاس رو در ۳ ثانیه ثبت می‌کنم. گزارش ماهانه هم خودکاره. فوق‌العاده!»
-                </p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">ز</div>
-                    <div class="testimonial-info">
-                        <div class="testimonial-name">زهرا آذرپیرا</div>
-                        <div class="testimonial-role">باشگاه بانوان</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">
-                    «پشتیبانی سریع و کاملاً فارسی. هر سوالی داشتم توی چند دقیقه جواب گرفتم. برای ما که آدم‌های فنی نیستیم خیلی مهمه.»
-                </p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">م</div>
-                    <div class="testimonial-info">
-                        <div class="testimonial-name">مهدی صالح‌زاده</div>
-                        <div class="testimonial-role">باشگاه قهرمانان</div>
-                    </div>
-                </div>
-            </div>
+            🎁 <strong>۳۰ روز رایگان:</strong> همه‌ی امکانات رو کامل تست کن. بعد تصمیم بگیر.
         </div>
     </div>
 </section>
@@ -1888,7 +1752,7 @@ body {
             <details class="faq-item">
                 <summary class="faq-question">اگه نرم‌افزار رو نپسندم چی؟ پولم برمی‌گرده؟</summary>
                 <div class="faq-answer">
-                    بله، ما "تضمین بازگشت پول ۷ روزه" داریم. اگر تا ۷ روز اول استفاده راضی نبودید، به هر دلیلی، کل مبلغ پرداختی شما بدون هیچ سوالی برگردانده می‌شود. چون ما به کیفیت محصولمان اطمینان کامل داریم.
+                    بله، ما "تضمین بازگشت پول ۷ روزه" داریم. اگر تا ۷ روز اول استفاده راضی نبودید، به هر دلیلی، کل مبلغ پرداختی شما بدون هیچ سوالی برگردانده می‌شود. ما می‌خوایم با خیال راحت تست کنی.
                 </div>
             </details>
 
@@ -1927,7 +1791,7 @@ body {
                 <span>✅ بدون کارت بانکی</span>
                 <span>✅ راه‌اندازی فوری</span>
                 <span>✅ پشتیبانی ۲۴/۷</span>
-                <span>✅ تضمین ۷ روزه</span>
+                <span>✅ ۳۰ روز رایگان</span>
             </div>
         </div>
     </div>
@@ -1954,8 +1818,7 @@ body {
                 <ul class="footer-links">
                     <li><a href="#features">ویژگی‌ها</a></li>
                     <li><a href="#pricing">پلن‌ها</a></li>
-                    <li><a href="#testimonials">نظرات</a></li>
-                    <li><a href="#faq">سوالات</a></li>
+                            <li><a href="#faq">سوالات</a></li>
                 </ul>
             </div>
 
@@ -1966,6 +1829,16 @@ body {
                     <li><a href="https://ilyasalehzade6-wq.github.io/pulse-app/login.html" target="_blank">ورود اعضا</a></li>
                     <li><a href="https://ilyasalehzade6-wq.github.io/python-manager/" target="_blank">پورتال اعضا</a></li>
                 </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">📱 اسکن کنید</h4>
+                <div style="width: 120px; height: 120px; border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(241, 196, 15, 0.3); margin-bottom: 10px;">
+                    <img src="../assets/qr-landing-framed.png" alt="QR" style="width: 100%; height: 100%; display: block;">
+                </div>
+                <div style="font-size: 11px; color: var(--muted); line-height: 1.5;">
+                    سایت ما را با موبایل<br>bبینید
+                </div>
             </div>
 
             <div>
